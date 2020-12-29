@@ -5,7 +5,7 @@ provider:
   region: ap-southeast-2
 functions:
   graphql:
-    handler: src/server.graphqlHandler
+    handler: src/handlers.graphqlHandler
     events:
       - http:
           path: graphql
@@ -15,7 +15,12 @@ functions:
           path: graphql
           method: get
           cors: true
-
+  app:
+    handler: src/handlers.apiHandler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
+    
 plugins:
   - serverless-dotenv-plugin
   - serverless-webpack
