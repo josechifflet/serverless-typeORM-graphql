@@ -5,7 +5,7 @@ provider:
   region: ap-southeast-2
 functions:
   graphql:
-    handler: src/server.handler
+    handler: src/server.graphqlHandler
     events:
       - http:
           path: graphql
@@ -14,6 +14,7 @@ functions:
       - http:
           path: graphql
           method: get
+          cors: true
 
 plugins:
   - serverless-dotenv-plugin
@@ -23,6 +24,7 @@ plugins:
 custom:
   serverless-offline:
     port: 3000
+
   webpack:
     includeModules: true
   

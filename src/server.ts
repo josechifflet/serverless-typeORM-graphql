@@ -18,8 +18,8 @@ async function getServer() {
   });
 }
 
-export function handler(event: any, ctx: any, callback: any) {
+export function graphqlHandler(event: any, ctx: any, callback: any) {
   getServer()
-      .then(server => server.createHandler())
-      .then(handler => handler(event, ctx, callback))
+    .then(server => server.createHandler())
+    .then(handler => handler(event, ctx, callback))
 }

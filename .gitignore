@@ -118,9 +118,8 @@ dist
 # VSCode
 .vscode
 
-/.serverless/**/*
-/.vscode/**/*
-/.webpack/**/*
+.serverless/*
+.webpack/*
 /node_modules
 /tmp/**/*
 .DS_Store

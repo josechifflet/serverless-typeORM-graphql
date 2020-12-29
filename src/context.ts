@@ -23,6 +23,7 @@ export interface ExpressContext {
 }
 
 const pubsub = new PubSub();
+
 export const getToken = (req: Express.Request & any): string => {
   const authHeader = req.get('Authorization');
   if (!authHeader) {
