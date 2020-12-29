@@ -3,7 +3,7 @@ import { ApolloServer } from 'apollo-server-lambda';
 import { resolvers } from './resolvers';
 import { createContext } from './context';
 import { buildSchema } from 'type-graphql';
-import connection from '../src/db';
+import connection from './db';
 
 
 async function getServer() {

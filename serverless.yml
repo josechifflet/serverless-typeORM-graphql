@@ -29,6 +29,5 @@ custom:
     includeModules: true
   
   dotenv:
-    path: dotenv/.env
     logging: false
   

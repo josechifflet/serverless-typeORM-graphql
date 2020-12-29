@@ -1,6 +1,7 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, CreateDateColumn, DeleteDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { EncryptionTransformer } from 'typeorm-encrypted';
+import Post from './Post';
 
 
 @ObjectType()
@@ -34,4 +35,21 @@ export default class User extends BaseEntity {
     iv: 'ff5ac19190424b1d88f9419ef949ae56'
   })})
   password: string;
+
+  @OneToMany(() => Post, post => post.user)
+  posts: Post[];
+
+  /** @Timestamps */
+
+  @Field(() => Date)
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @Field(() => Date)
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @Field(() => Date)
+  @DeleteDateColumn()
+  deletedAt: Date;
 }

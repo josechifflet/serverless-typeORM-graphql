@@ -1,5 +1,4 @@
 require('dotenv');
-
 module.exports = {
   "type": process.env.DB_CONNECTOR,
   "host": process.env.DB_HOST,
