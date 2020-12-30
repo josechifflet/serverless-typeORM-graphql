@@ -5,15 +5,26 @@
   "license": "MIT",
   "scripts": {
     "start": "serverless offline",
+    "prettier-format": "prettier --config .prettierrc src/**/*.ts --write",
     "lint": "eslint src/**/**/*.ts && eslint tests/**/**/*.ts",
-    "tsc": "tsc",
+    "build": "tsc",
     "codecov": "codecov",
     "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
-    "migrate:create": "typeorm migration:create -n",
-    "migrate:generate": "typeorm migration:generate -n",
-    "migrate:run": "typeorm migration:run",
-    "migrate:revert": "typeorm migration:revert",
-    "schema-sync": "typeorm schema:sync"
+    "migrate:create": "tsc && typeorm migration:create -n",
+    "migrate:generate": "tsc && typeorm migration:generate -n",
+    "migrate:run": "tsc && typeorm migration:run",
+    "migrate:revert": "tsc && typeorm migration:revert",
+    "schema:sync": "tsc && typeorm schema:sync"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "npm run prettier-format"
+    ]
   },
   "dependencies": {
     "apollo-server-lambda": "^2.19.1",
@@ -66,13 +77,17 @@
     "cross-env": "^7.0.3",
     "dotenv": "^8.2.0",
     "eslint": "^7.16.0",
+    "eslint-config-prettier": "^7.1.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.3.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^5.0.0",
     "jest": "^26.6.3",
+    "lint-staged": "^10.5.3",
     "nodemon": "^2.0.6",
+    "prettier": "^2.2.1",
     "serverless-dotenv-plugin": "^3.1.0",
     "serverless-offline": "^6.8.0",
     "serverless-webpack": "^5.3.5",
